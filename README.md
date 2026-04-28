@@ -5,6 +5,8 @@
 ⚠️ **LIRE ATTENTIVEMENT TOUTES LES ÉTAPES AVANT DE COMMENCER.**  
 ❌ **NE PAS FAIRE D'ACTIONS MANUELLES TELLES QUE RENOMMER LES MACHINES OU AJOUTER DES RÔLES.**
 
+---
+
 ### 🌐 Vue générale
 
 Le lab est constitué de 4 machines.
@@ -16,30 +18,34 @@ Le lab est constitué de 4 machines.
   - 🐉 1 VM Kali Linux
   - 🔥 1 Routeur/parefeu PfSense
     
-Toutes les machines sont dans le même sous-réseau défini par le réseau virtuel NAT de l'hyperviseur.
+> 🌐 Toutes les machines sont dans le même sous-réseau défini par le réseau virtuel NAT de l'hyperviseur.
 Les machines Windows se trouvent dans le domaine `FORMATION.LAN`
 
 ![Schéma lab](adlab.png)
 
 
+---
+
 ### 📦 Importation des OVA & Création des VM
 - Télécharger l'ISO **EN FRANÇAIS**
   - [Windows Server 2022](https://www.microsoft.com/fr-fr/evalcenter/download-windows-server-2022) (utilisé pour DC01)
 - Importer et créer les VM dans un hyperviseur en les nommant DC01, SRV01 & PC01.
-  - Pour VirtualBox, ajouter le fichier ISO. ⚠️IMPORTANT⚠️ : **Décocher la case `Proceed with Unattended Installation`**
-  - Pour VMware, **ne pas ajouter le fichier ISO à la création de la VM, choisir `I will install the operating system later`**. Puis ajouter l'ISO dans le lecteur CD quand la VM est créée.
+  - 📦 **VirtualBox** : ajouter le fichier ISO. 🚨 **IMPORTANT :** décocher impérativement la case `Proceed with Unattended Installation`
+  - 🖥️ **VMware** : ne pas ajouter le fichier ISO lors de la création de la VM. Choisir `I will install the operating system later`. Puis ajouter l'ISO dans le lecteur CD quand la VM est créée.
 - Configuration de la VM Windows Server CORE (DC01)
   - Recommandé: 1024 MB de RAM, 1 CPU (installation en mode CORE)
   - Disque: 40GB dynamique
   - Changer les paramètres réseaux pour que les VM puissent communiquer entre elles (avec Kali également)
    
+---
+
 ### 🏛️ Setup du DC (DC01)
 1. 🚀 Allumer la VM DC01, installer Windows (choisir **Standard"**)
 2. ⚙️ Choisir l'installation personnalisée, sélectionner le disque et laisser faire l'installation et le redémarrage
 3. 🔐 Utiliser le mot de passe `P@ssw0rd` pour l'utilisateur `Administrateur`
 4. 🧰 Se connecter et installer les VM Tools / Guest Additions puis redémarrer
 5. 💻 Ouvrir PowerShell en admin, ensuite taper la commande `powershell -ep bypass`
-Sur les versions récentes de Windows Server, le service est protégé par Tamper Protection et peut redémarrer automatiquement.
+> ⚠️ Sur les versions récentes de Windows Server, le service peut être protégé par **Tamper Protection** et redémarrer automatiquement.
 6. 🛡️ Désactivation via stratégie registre (plus persistante)
 ```bashNew-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Force
 
@@ -57,6 +63,8 @@ $c = @{ '1' = 'DC01'; '2' = 'SRV01'; '3' = 'PC01' }; $s = Read-Host "Machine à 
 9. 🔁 Répéter les étapes 5 & 7
 10. 🔁 Le serveur va de nouveau redémarrer. Cette fois il faut se connecter avec le compte `Administrateur` dans le domain `FORMATION.LAN` et relancer le script une dernière fois en suivant les étapes 5 & 7.
 
+---
+
 ### 🗄️ Setup de SRV01
 - Une fois le DC configuré, installer Windows sur SRV01.
 - Pour le compte `Administrateur` choisir le mot de passe `P@ssw0rd`.
@@ -69,6 +77,8 @@ $c = @{ '1' = 'DC01'; '2' = 'SRV01'; '3' = 'PC01' }; $s = Read-Host "Machine à 
 - Une fois que le serveur a de nouveau redémarré, se connecter avec le compte **Administrateur du domaine** et relancer une dernière fois le script.
 - Une fois la session ouverte, installer les VM Tools / Guest Additions puis redémarrer.
 
+---
+
 ### 💻 Setup de PC01 (Windows11.ova)
 - Une fois le DC configuré, importe Windows11.ova Windows et nommer la PC01.
 - Ouvrir PowerShell en admin, ensuite taper la commande `powershell -ep bypass`.
@@ -79,19 +89,45 @@ $c = @{ '1' = 'DC01'; '2' = 'SRV01'; '3' = 'PC01' }; $s = Read-Host "Machine à 
 - Le script va redémarrer l'ordinateur. Se reconnecter et relancer le script.
 - Redémarrer l'ordinateur et relancer le script une troisième fois **avec l'admin du domaine**.
 
+---
+
 ### 🔧 Finalisation config DC01
 
 - Se connecter à DC01
 - Ouvrir PowerShell en tant qu'admin
 - Lancer la commande suivante : `Get-ADComputer -Identity SRV01 | Set-ADAccountControl -TrustedForDelegation $true`
 
+---
+
 ### 📸 Snapshots
-- 📸 Une fois que toutes les VMs sont configurées, faire un snapshot !
+- 📸 Une fois toutes les VM configurées, créer un snapshot propre de chaque machine virtuelle.
 
 ## 🐉 Setup Kali Linux
 
 - 🧰 Une fois la session ouverte, installer les VM Tools / Guest Additions puis redémarrer.
 
 - Importer kali2025.ova dans votre hyperviseur
-- Se connecter avec les identifiants `user` / `operations`
+- 🔐 Se connecter avec les identifiants `user` / `operations`
 - Eteindre et faire un snapshot.
+
+
+---
+
+# ✅ Résultat attendu
+
+À la fin du déploiement, vous disposerez :
+
+- ✅ d’un environnement Active Directory vulnérable fonctionnel
+- ✅ d’un contrôleur de domaine opérationnel
+- ✅ d’un serveur membre intégré au domaine
+- ✅ d’un poste client Windows intégré
+- ✅ d’une machine Kali Linux prête pour les tests offensifs
+- ✅ d’un laboratoire prêt pour les démonstrations et TP cybersécurité
+
+---
+
+# ⚠️ Avertissement
+
+> Ce laboratoire est destiné exclusivement à des fins pédagogiques et de recherche en cybersécurité.
+
+❌ Ne jamais exposer cet environnement sur Internet ou dans un environnement de production.
