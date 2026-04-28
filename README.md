@@ -79,6 +79,6 @@ $c = @{ '1' = 'DC01'; '2' = 'SRV01'; '3' = 'PC01' }; $s = Read-Host "Machine à 
 - Une fois que toutes les VM sont configurées, faire un snapshot
 
 ## Setup Kali
-- Importer kali2025.ova en double 
-- Se connecter avec les identifiants `kali` / `kali`
+- Importer kali2025.ova dans votre hyperviseur
+- Se connecter avec les identifiants `user` / `operations`
 - Eteindre et faire un snapshot
