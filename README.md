@@ -1,5 +1,4 @@
-# ADLab
-
+# Vulnérabilités Active Directory
 ## Mise en place du lab Active Directory
 
 **LIRE ATTENTIVEMENT TOUTES LES ÉTAPES AVANT DE COMMENCER.**  
@@ -12,8 +11,10 @@ Le lab est constitué de 4 machines.
   - DC01 : le contrôleur de domaine
   - SRV01 : un serveur
   - PC01 : un ordinateur (client)
-- 1 VM Kali Linux
-
+- 2 VM Unix/Linux
+  - 1 VM Kali Linux
+  - 1 Routeur/parefeu PfSense
+    
 Toutes les machines sont dans le même sous-réseau défini par le réseau virtuel NAT de l'hyperviseur.
 Les machines Windows se trouvent dans le domaine `NEVASEC.LOCAL`
 
