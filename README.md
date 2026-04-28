@@ -69,7 +69,7 @@ $c = @{ '1' = 'DC01'; '2' = 'SRV01'; '3' = 'PC01' }; $s = Read-Host "Machine à 
 - Une fois que le serveur a de nouveau redémarré, se connecter avec le compte **Administrateur du domaine** et relancer une dernière fois le script.
 - Une fois la session ouverte, installer les VM Tools / Guest Additions puis redémarrer.
 
-### Setup de PC01
+### Setup de PC01 (Windows11.ova)
 - Une fois le DC configuré, importe Windows11.ova Windows et nommer la PC01.
 - Ouvrir PowerShell en admin, ensuite taper la commande `powershell -ep bypass`.
 - Utiliser la commande suivante et suivre les instructions (il se peut qu'il faille d'abord désactiver Windows Defender) comme pour DC01 et SRV01:
