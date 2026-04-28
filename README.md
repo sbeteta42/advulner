@@ -41,13 +41,12 @@ Les machines Windows se trouvent dans le domaine `FORMATION.LAN`
 5. Ouvrir PowerShell en admin, ensuite taper la commande `powershell -ep bypass`
 Sur les versions récentes de Windows Server, le service est protégé par Tamper Protection et peut redémarrer automatiquement.
 6. Désactivation via stratégie registre (plus persistante)
-```bash
-New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Force
+```bashNew-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Force
 
-Set-ItemProperty 
--Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" 
--Name "DisableAntiSpyware" 
--Type DWord 
+Set-ItemProperty `
+-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" `
+-Name "DisableAntiSpyware" `
+-Type DWord `
 -Value 1
 ```
 7. Utiliser la commande suivante et suivre les instructions (il se peut qu'il faille d'abord désactiver Windows Defender) :
