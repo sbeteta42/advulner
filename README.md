@@ -34,7 +34,7 @@ Les machines Windows se trouvent dans le domaine `FORMATION.LAN`
   - Changer les paramètres réseaux pour que les VM puissent communiquer entre elles (avec Kali également)
    
 ### Setup du DC (DC01)
-1. Allumer la VM DC01, installer Windows (choisir **Standard & "Expérience de bureau"**)
+1. Allumer la VM DC01, installer Windows (choisir **Standard"**)
 2. Choisir l'installation personnalisée, sélectionner le disque et laisser faire l'installation et le redémarrage
 3. Utiliser le mot de passe `P@ssw0rd` pour l'utilisateur `Administrateur`
 4. Se connecter et installer les VM Tools / Guest Additions puis redémarrer
