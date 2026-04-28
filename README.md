@@ -1,6 +1,6 @@
 # 🔐 Active Directory Vulnerabilities Lab (PoC)
 
-> Environnement de laboratoire dédié aux démonstrations et travaux pratiques autour des vulnérabilités Active Directory dans un contexte pédagogique cybersécurité. :contentReference[oaicite:0]{index=0}
+> Environnement de laboratoire dédié aux démonstrations et travaux pratiques autour des vulnérabilités Active Directory dans un contexte pédagogique cybersécurité.
 
 ---
 
