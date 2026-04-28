@@ -41,38 +41,39 @@ Les machines Windows se trouvent dans le domaine `FORMATION.LAN`
 5. Ouvrir PowerShell en admin, ensuite taper la commande `powershell -ep bypass`
 Sur les versions récentes de Windows Server, le service est protégé par Tamper Protection et peut redémarrer automatiquement.
 6. Désactivation via stratégie registre (plus persistante)
-`New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Force
+```bash
+New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Force
 
 Set-ItemProperty 
 -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" 
 -Name "DisableAntiSpyware" 
 -Type DWord 
 -Value 1
-`
+```
 7. Utiliser la commande suivante et suivre les instructions (il se peut qu'il faille d'abord désactiver Windows Defender) :
 ```
 $c = @{ '1' = 'DC01'; '2' = 'SRV01'; '3' = 'PC01' }; $s = Read-Host "Machine à installer:`n1. Contrôleur de domaine (DC01)`n2. Serveur (SRV01)`n3. Client (PC01)`nEntrez votre choix (1/2/3):"; if ($c.ContainsKey($s)) { (iwr -useb ("https://raw.githubusercontent.com/sbeteta42/advulner/main/" + $c[$s] + ".ps1")) | iex; Invoke-LabSetup } else { Write-Host "Choix invalide." }
 ```
-7. Le script va faire redémarrer le serveur.
-8. Répéter les étapes 5 & 6
-9. Le serveur va de nouveau redémarrer. Cette fois il faut se connecter avec le compte `Administrateur` dans le domain `FORMATION.LAN` et relancer le script une dernière fois en suivant les étapes 5 & 6.
+8. Le script va faire redémarrer le serveur.
+9. Répéter les étapes 5 & 7
+10. Le serveur va de nouveau redémarrer. Cette fois il faut se connecter avec le compte `Administrateur` dans le domain `FORMATION.LAN` et relancer le script une dernière fois en suivant les étapes 5 & 7.
 
 ### Setup de SRV01
 - Une fois le DC configuré, installer Windows sur SRV01.
 - Pour le compte `Administrateur` choisir le mot de passe `P@ssw0rd`.
-- Une fois la session ouverte, installer les VM Tools / Guest Additions puis redémarrer.
 - Ouvrir PowerShell en admin, ensuite taper la commande `powershell -ep bypass`
-- Utiliser la commande suivante et suivre les instructions (il se peut qu'il faille d'abord désactiver Windows Defender) :
+- Utiliser la commande suivante et suivre les instructions (il se peut qu'il faille d'abord désactiver Windows Defender)  commr précédemment sur DC01:
 ```
 $c = @{ '1' = 'DC01'; '2' = 'SRV01'; '3' = 'PC01' }; $s = Read-Host "Machine à installer:`n1. Contrôleur de domaine (DC01)`n2. Serveur (SRV01)`n3. Client (PC01)`nEntrez votre choix (1/2/3):"; if ($c.ContainsKey($s)) { (iwr -useb ("https://raw.githubusercontent.com/sbeteta42/advulner/main/" + $c[$s] + ".ps1")) | iex; Invoke-LabSetup } else { Write-Host "Choix invalide." }
 ````
 - Le script va redémarrer le serveur une fois. Il faut relancer le script en Administrateur local.
 - Une fois que le serveur a de nouveau redémarré, se connecter avec le compte **Administrateur du domaine** et relancer une dernière fois le script.
+- Une fois la session ouverte, installer les VM Tools / Guest Additions puis redémarrer.
 
 ### Setup de PC01
 - Une fois le DC configuré, importe Windows11.ova Windows et nommer la PC01.
 - Ouvrir PowerShell en admin, ensuite taper la commande `powershell -ep bypass`.
-- Utiliser la commande suivante et suivre les instructions (il se peut qu'il faille d'abord désactiver Windows Defender) :
+- Utiliser la commande suivante et suivre les instructions (il se peut qu'il faille d'abord désactiver Windows Defender) comme pour DC01 et SRV01:
 ```
 $c = @{ '1' = 'DC01'; '2' = 'SRV01'; '3' = 'PC01' }; $s = Read-Host "Machine à installer:`n1. Contrôleur de domaine (DC01)`n2. Serveur (SRV01)`n3. Client (PC01)`nEntrez votre choix (1/2/3):"; if ($c.ContainsKey($s)) { (iwr -useb ("https://raw.githubusercontent.com/WodenSec/ADLab/main/" + $c[$s] + ".ps1")) | iex; Invoke-LabSetup } else { Write-Host "Choix invalide." }
 ````
@@ -86,9 +87,10 @@ $c = @{ '1' = 'DC01'; '2' = 'SRV01'; '3' = 'PC01' }; $s = Read-Host "Machine à 
 - Lancer la commande suivante : `Get-ADComputer -Identity SRV01 | Set-ADAccountControl -TrustedForDelegation $true`
 
 ### Snapshots
-- Une fois que toutes les VM sont configurées, faire un snapshot
+- Une fois que toutes les VMs sont configurées, faire un snapshot !
 
-## Setup Kali
+## Setup Kali- Une fois la session ouverte, installer les VM Tools / Guest Additions puis redémarrer.
+
 - Importer kali2025.ova dans votre hyperviseur
 - Se connecter avec les identifiants `user` / `operations`
-- Eteindre et faire un snapshot
+- Eteindre et faire un snapshot.
