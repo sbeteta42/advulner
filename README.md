@@ -26,7 +26,7 @@ Les machines Windows se trouvent dans le domaine `FORMATION.LAN`
 ### 📦 Importation des OVA & Création des VM
 - Télécharger l'ISO **EN FRANÇAIS**
   - [Windows Server 2022](https://www.microsoft.com/fr-fr/evalcenter/download-windows-server-2022) (utilisé pour DC01)
-- Importer et créer les VM dans un hyperviseur en les nommant DC01, SRV01 & PC01.
+- Importer et créer les VM dans un hyperviseur en les nommant DC01, SRV01,PC01 et KALI.
   - 📦 **VirtualBox** : ajouter le fichier ISO. 🚨 **IMPORTANT :** décocher impérativement la case `Proceed with Unattended Installation`
   - 🖥️ **VMware** : ne pas ajouter le fichier ISO lors de la création de la VM. Choisir `I will install the operating system later`. Puis ajouter l'ISO dans le lecteur CD quand la VM est créée.
 - Configuration de la VM Windows Server CORE (SRV01)
