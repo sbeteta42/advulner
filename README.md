@@ -11,8 +11,8 @@
 
 Le lab est constitué de 4 machines.
 - 🪟 3 VM Windows
-  - 🏛️ [DC01](https://mega.nz/file/7lwlwA4Z#Ahwlft6_SAQ9b3bWz_E879xxf0HyhrXlBwmjSvtLUgY) : le contrôleur de domaine
-  - 🗄️ SRV01 : un serveur
+  - 🏛️ [DC01](https://mega.nz/file/7lwlwA4Z#Ahwlft6_SAQ9b3bWz_E879xxf0HyhrXlBwmjSvtLUgY) : le contrôleur de domaine en mode GUI
+  - 🗄️ SRV01 : un serveur (à installer en mode CORE)
   - 💻 [PC01](https://mega.nz/file/C8wFkCKR#WF0raTNtvUWZIH-ocUj4IUWMelca-gUiX6UUJbQpAIA) : un ordinateur (client)
 - 🐧 2 VM Unix/Linux
   - 🐉 1 VM Kali Linux
