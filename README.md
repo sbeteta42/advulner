@@ -20,7 +20,7 @@ Le lab est constitué de 5 machines virtuelles dont 4 importer.
     
 > 🌐 Toutes les machines sont dans le même sous-réseau défini par le réseau virtuel NAT de l'hyperviseur.
 Les machines Windows se trouvent dans le domaine `FORMATION.LAN`
-
+[Schéma lab](lab.png)
 ---
 
 ### 📦 Importation des OVA & Création des VM
