@@ -21,9 +21,6 @@ Le lab est constitué de 4 machines.
 > 🌐 Toutes les machines sont dans le même sous-réseau défini par le réseau virtuel NAT de l'hyperviseur.
 Les machines Windows se trouvent dans le domaine `FORMATION.LAN`
 
-![Schéma lab](adlab.png)
-
-
 ---
 
 ### 📦 Importation des OVA & Création des VM
