@@ -16,7 +16,7 @@ Le lab est constitué de 4 machines.
   - 💻 [PC01](https://mega.nz/file/C8wFkCKR#WF0raTNtvUWZIH-ocUj4IUWMelca-gUiX6UUJbQpAIA) : un ordinateur (client)
 - 🐧 2 VM Unix/Linux
   - 🐉 1 VM Kali Linux
-  - 🔥 1 Routeur/parefeu PfSense
+  - 🔥 1 Routeur/parefeu [PfSense](https://mega.nz/file/f15BVSjI#eO5j5LTHVih6ZJYeDwh_Ljq4gOmcVg42G-viHiTPHk4)
     
 > 🌐 Toutes les machines sont dans le même sous-réseau défini par le réseau virtuel NAT de l'hyperviseur.
 Les machines Windows se trouvent dans le domaine `FORMATION.LAN`
