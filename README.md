@@ -9,7 +9,7 @@
 
 ### 🌐 Vue générale
 
-Le lab est constitué de 5 machines virtuelles
+Le lab est constitué de 5 machines virtuelles dont 4 importer.
 - 🪟 3 VM Windows
   - 🏛️ [DC01](https://mega.nz/file/7lwlwA4Z#Ahwlft6_SAQ9b3bWz_E879xxf0HyhrXlBwmjSvtLUgY) : le contrôleur de domaine en mode GUI
   - 🗄️ SRV01 : un serveur (à installer en mode CORE)
