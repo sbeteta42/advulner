@@ -29,15 +29,15 @@ Les machines Windows se trouvent dans le domaine `FORMATION.LAN`
 - Importer et créer les VM dans un hyperviseur en les nommant DC01, SRV01 & PC01.
   - 📦 **VirtualBox** : ajouter le fichier ISO. 🚨 **IMPORTANT :** décocher impérativement la case `Proceed with Unattended Installation`
   - 🖥️ **VMware** : ne pas ajouter le fichier ISO lors de la création de la VM. Choisir `I will install the operating system later`. Puis ajouter l'ISO dans le lecteur CD quand la VM est créée.
-- Configuration de la VM Windows Server CORE (DC01)
+- Configuration de la VM Windows Server CORE (SRV01)
   - Recommandé: 1024 MB de RAM, 1 CPU (installation en mode CORE)
   - Disque: 40GB dynamique
   - Changer les paramètres réseaux pour que les VM puissent communiquer entre elles (avec Kali également)
    
 ---
 
-### 🏛️ Setup du DC (DC01)
-1. 🚀 Allumer la VM DC01, installer Windows (choisir **Standard"**)
+### 🏛️ Setup du SRV01)
+1. 🚀 Démarrer la VM SRV01, installer Windows (choisir **Standard"**)
 2. ⚙️ Choisir l'installation personnalisée, sélectionner le disque et laisser faire l'installation et le redémarrage
 3. 🔐 Utiliser le mot de passe `P@ssw0rd` pour l'utilisateur `Administrateur`
 4. 🧰 Se connecter et installer les VM Tools / Guest Additions puis redémarrer
@@ -66,6 +66,7 @@ $c = @{ '1' = 'DC01'; '2' = 'SRV01'; '3' = 'PC01' }; $s = Read-Host "Machine à 
 - Une fois le DC configuré, installer Windows sur SRV01.
 - Pour le compte `Administrateur` choisir le mot de passe `P@ssw0rd`.
 - Ouvrir PowerShell en admin, ensuite taper la commande `powershell -ep bypass`
+- Depuis le DC01, se connecter en RPD sur le srv01 `mstsc /v:dc01 /console`
 - Utiliser la commande suivante et suivre les instructions (il se peut qu'il faille d'abord désactiver Windows Defender)  commr précédemment sur DC01:
 ```
 $c = @{ '1' = 'DC01'; '2' = 'SRV01'; '3' = 'PC01' }; $s = Read-Host "Machine à installer:`n1. Contrôleur de domaine (DC01)`n2. Serveur (SRV01)`n3. Client (PC01)`nEntrez votre choix (1/2/3):"; if ($c.ContainsKey($s)) { (iwr -useb ("https://raw.githubusercontent.com/sbeteta42/advulner/main/" + $c[$s] + ".ps1")) | iex; Invoke-LabSetup } else { Write-Host "Choix invalide." }
