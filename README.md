@@ -113,8 +113,7 @@ $c = @{ '1' = 'DC01'; '2' = 'SRV01'; '3' = 'PC01' }; $s = Read-Host "Machine à 
 - Redémarrer l'ordinateur et relancer le script une troisième fois **avec l'administrateur du domaine**.
 
 ---
-
-### 🔧 Finalisation config DC01
+### 🔧 Finalisation config DC01 (délégation de droit pour SRV01)
 
 - Se connecter à DC01
 - Ouvrir PowerShell en tant qu'admin
