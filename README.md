@@ -123,17 +123,16 @@ $c = @{ '1' = 'DC01'; '2' = 'SRV01'; '3' = 'PC01' }; $s = Read-Host "Machine à 
 ---
 
 ### 📸 Snapshots
-- 📸 Une fois toutes les VM configurées, créer un snapshot propre de chaque machine virtuelle.
+- 📸 Une fois toutes les VM configurées, créer un snapshot propre de chaque machine virtuelle (par précaution).
 
 ## 🐉 Setup Kali Linux
 
 - Importer kali2025.ova dans votre hyperviseur
 - 🔐 Se connecter avec les identifiants `user` / `operations` ou en `root` / `operations` 
-- Faire un snapshot.
 
 ---
 
-# ✅ Résultat attendu
+# ✅ Résultats attendus
 
 À la fin du déploiement, vous disposerez :
 
@@ -148,6 +147,6 @@ $c = @{ '1' = 'DC01'; '2' = 'SRV01'; '3' = 'PC01' }; $s = Read-Host "Machine à 
 
 # ⚠️ Avertissement
 
-> Ce laboratoire est destiné exclusivement à des fins pédagogiques et de recherche en cybersécurité.
+> Ce laboratoire est destiné exclusivement à des fins pédagogiques et de recherche en cybersécurité en environnemment Windows.
 
 ❌ Ne jamais exposer cet environnement sur Internet ou dans un environnement de production.
