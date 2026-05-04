@@ -41,7 +41,7 @@ Les VMs Windows se trouvent dans le domaine `FORMATION.LAN` (cliquer sur le shé
 2. 🔐 Utiliser le mot de passe `P@ssw0rd` pour l'utilisateur `Administrateur`
 3. 💻 Ouvrir PowerShell en admin, ensuite taper la commande `powershell -ep bypass`
 4. ⚠️ Sur les versions récentes de Windows Server, le service peut être protégé par **Tamper Protection** et redémarrer automatiquement.
-5. 🛡️ Désactivation via stratégie registre (plus persistante)
+5. 🛡️ Désactivation via une stratégie à appliquer au niveau du registre (plus persistante) en PowerShell avec les droits Administrateur.
 ```bash
 New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Force
 
@@ -51,11 +51,11 @@ Set-ItemProperty `
 -Type DWord `
 -Value 1
 ```
-6. 🤖 Utiliser la commande suivante et suivre les instructions (il se peut qu'il faille d'abord désactiver Windows Defender)
+6. 🤖 Utiliser la commande suivante en PowerShell et suivre les instructions (il se peut qu'il faille d'abord désactiver Windows Defender sur les dernières versions de Windows Server)
 ```
 $c = @{ '1' = 'DC01'; '2' = 'SRV01'; '3' = 'PC01' }; $s = Read-Host "Machine à installer:`n1. Contrôleur de domaine (DC01)`n2. Serveur (SRV01)`n3. Client (PC01)`nEntrez votre choix (1/2/3):"; if ($c.ContainsKey($s)) { (iwr -useb ("https://raw.githubusercontent.com/sbeteta42/advulner/main/" + $c[$s] + ".ps1")) | iex; Invoke-LabSetup } else { Write-Host "Choix invalide." }
 ```
-7. 🔁 Le script va faire redémarrer le serveur.
+7. 🔁 Le script va faire redémarrer votre serveur.
 8. 🔁 Répéter les étapes 5 & 7
 9. 🔁 Le serveur va de nouveau redémarrer. Cette fois il faut se connecter avec le compte `Administrateur` dans le domain `FORMATION.LAN` et relancer le script une dernière fois en suivant les étapes 5 & 6.
 
@@ -67,7 +67,7 @@ $c = @{ '1' = 'DC01'; '2' = 'SRV01'; '3' = 'PC01' }; $s = Read-Host "Machine à 
 4. 🧰 Se connecter et installer les VM Tools / Guest Additions puis redémarrer
 5. 💻 Ouvrir PowerShell en admin, ensuite taper la commande `powershell -ep bypass`
 > ⚠️ Sur les versions récentes de Windows Server, le service peut être protégé par **Tamper Protection** et redémarrer automatiquement.
-6. 🛡️ Désactivation via stratégie registre (plus persistante)
+6. 🛡️ Désactivation via une stratégie au niveau du registre (plus persistante) en PowerShell.
 ```bash
 New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Force
 
@@ -103,7 +103,7 @@ $c = @{ '1' = 'DC01'; '2' = 'SRV01'; '3' = 'PC01' }; $s = Read-Host "Machine à 
 ---
 
 ### 💻 Setup de PC01 (Windows11.ova)
-- Une fois le DC configuré, importe Windows11.ova et nommer la PC01 dans votre hyperviseur
+- Une fois le DC01 configuré, importe Windows11.ova et nommer la PC01 dans votre hyperviseur.
 - Ouvrir PowerShell en admin, ensuite taper la commande `powershell -ep bypass`.
 - Utiliser la commande suivante et suivre les instructions (il se peut qu'il faille d'abord désactiver Windows Defender) comme pour DC01 et SRV01:
 ```
