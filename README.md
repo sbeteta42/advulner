@@ -9,28 +9,29 @@
 
 ### 🌐 Vue générale
 
-Le lab est constitué de 5 machines virtuelles dont 4 importer.
+Le lab est constitué de 5 machines virtuelles dont 4 importer. (cliquer sur les différents liens ci-dessous)
 - 🪟 3 VM Windows
   - 🏛️ [DC01](https://mega.nz/file/7lwlwA4Z#Ahwlft6_SAQ9b3bWz_E879xxf0HyhrXlBwmjSvtLUgY) : le contrôleur de domaine en mode GUI
   - 🗄️ SRV01 : un serveur (à installer en mode CORE)
   - 💻 [PC01](https://mega.nz/file/C8wFkCKR#WF0raTNtvUWZIH-ocUj4IUWMelca-gUiX6UUJbQpAIA) : un ordinateur (client)
+
 - 🐧 2 VM Unix/Linux
   - 🐉 1 VM [Kali Linux](https://mega.nz/file/WhwF0QDB#G83O-4tRzdf4J9paxx3iHnvKCFZqeIJ5hx3AT-klXOc)
   - 🔥 1 Routeur/parefeu [PfSense](https://mega.nz/file/f15BVSjI#eO5j5LTHVih6ZJYeDwh_Ljq4gOmcVg42G-viHiTPHk4)
     
-> 🌐 Toutes les machines sont dans le même sous-réseau défini par le réseau virtuel NAT de l'hyperviseur.
-Les machines Windows se trouvent dans le domaine `FORMATION.LAN`
-[Schéma lab](lab.png)
+> 🌐 Toutes les machines sont dans le même réseau défini par le réseau LAN  de PFSENSE (192.168.1.0/24)
+Les VMs Windows se trouvent dans le domaine `FORMATION.LAN` (cliquer sur le shéma ci-dessous)
+> [Schéma lab](lab.png)
 ---
 
-### 📦 Importation des OVA & Création des VM
+### 📦 Création de d'une VM & Importation des OVA 
 - Télécharger l'ISO **EN FRANÇAIS**
   - [Windows Server 2022](https://www.microsoft.com/fr-fr/evalcenter/download-windows-server-2022) (utilisé pour DC01)
-- Importer et créer les VM dans un hyperviseur en les nommant DC01, SRV01,PC01 et KALI.
+- Importer et créer les VMs dans un hyperviseur en les nommant DC01, SRV01,PC01 et KALI
   - 📦 **VirtualBox** : ajouter le fichier ISO. 🚨 **IMPORTANT :** décocher impérativement la case `Proceed with Unattended Installation`
   - 🖥️ **VMware** : ne pas ajouter le fichier ISO lors de la création de la VM. Choisir `I will install the operating system later`. Puis ajouter l'ISO dans le lecteur CD quand la VM est créée.
-- Configuration de la VM Windows Server CORE (SRV01)
-  - Recommandé: 1024 MB de RAM, 1 CPU (installation en mode CORE)
+  - Configuration de la VM Windows Server CORE (SRV01)
+  - Recommandé: 1024 MB de RAM, 1 CPU, 2 core (installation en mode CORE)
   - Disque: 40GB dynamique
   - Changer les paramètres réseaux pour que les VM puissent communiquer entre elles (avec Kali également)
    
@@ -63,7 +64,7 @@ $c = @{ '1' = 'DC01'; '2' = 'SRV01'; '3' = 'PC01' }; $s = Read-Host "Machine à 
 ---
 
 ### 🗄️ Setup de SRV01
-- Une fois le DC configuré, installer Windows sur SRV01.
+- Une fois le DC01 configuré, installer Windows sur SRV01.
 - Pour le compte `Administrateur` choisir le mot de passe `P@ssw0rd`.
 - Ouvrir PowerShell en admin, ensuite taper la commande `powershell -ep bypass`
 - Depuis le DC01, se connecter en RPD sur SRV01 `mstsc /v:dc01 /console`
